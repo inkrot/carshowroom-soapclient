@@ -14,17 +14,60 @@ plugins {
     id "org.springframework.boot" version "2.0.1.RELEASE"
 }
 
+configurations {
+    jaxb
+}
+
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group 'com.mera.inkrot.soapclient'
 version '1.0-SNAPSHOT'
 
+task genJaxb {
+    ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
+    ext.classesDir = "${buildDir}/classes/jaxb"
+    ext.orderSchema = "http://localhost:8080/soap/order?wsdl=OrderService.wsdl"
+
+    outputs.dir classesDir
+
+    doLast() {
+        project.ant {
+            taskdef name: "xjc", classname: "com.sun.tools.xjc.XJCTask",
+                    classpath: configurations.jaxb.asPath
+            mkdir(dir: sourcesDir)
+            mkdir(dir: classesDir)
+
+            xjc(destdir: sourcesDir, schema: orderSchema,
+                    package: "com.mera.inkrot.soapclient.wsdl.order") {
+                arg(value: "-wsdl")
+                produces(dir: sourcesDir, includes: "**/*.java")
+            }
+
+            javac(destdir: classesDir, source: 1.8, target: 1.8, debug: true,
+                    debugLevel: "lines,vars,source",
+                    classpath: configurations.jaxb.asPath) {
+                src(path: sourcesDir)
+                include(name: "**/*.java")
+                include(name: "*.java")
+            }
+
+            copy(todir: classesDir) {
+                fileset(dir: sourcesDir, erroronmissingdir: false) {
+                    exclude(name: "**/*.java")
+                }
+            }
+        }
+    }
+}
+
 sourceCompatibility = 1.8
 
 jar {
     baseName = 'carshowroom-soapclient'
     version =  '0.0.1'
+
+    from genJaxb.classesDir
 }
 
 repositories {
@@ -38,7 +81,15 @@ dependencies {
 
     compile 'org.springframework.shell:spring-shell-starter:2.0.1.BUILD-SNAPSHOT'
 
-    compile 'org.springframework.boot:spring-boot-starter-webflux'
+    compile("org.springframework.boot:spring-boot-starter")
 
-    compile 'org.projectreactor:reactor-spring:1.0.1.RELEASE'
+    compile("org.springframework.ws:spring-ws-core")
+
+    compile(files(genJaxb.classesDir).builtBy(genJaxb))
+
+    jaxb "com.sun.xml.bind:jaxb-xjc:2.1.7"
+}
+
+task afterEclipseImport {
+    dependsOn genJaxb
 }
