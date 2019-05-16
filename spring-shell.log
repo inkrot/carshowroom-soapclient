@@ -35,3 +35,77 @@
 1557939944690:get-order 1
 1557940924158:git status
 1557940931453:exit
+1557993458742:get0order 5
+1557993462615:get-order 2
+1557993469882:get-order 6
+1557993475038:get-order 50
+1557993483086:get-order 49
+1557994504496:get-order 1
+1557995074502:get-order 2
+1557995132409:get-order 51
+1557995697799:get-order 1
+1557995740147:get-order 2
+1557995743929:get-order 3
+1557995748460:get-order 4
+1557995753258:get-order 5
+1557995757305:get-order 51
+1557995761305:get-orer 52
+1557995767931:get-order 52
+1557995927848:get-order 3
+1557995932348:get-order 5
+1557995937505:get-order 52
+1558004543592:get-order 1
+1558004562095:add-order --customer "Soap Customer" --model "sCar" --brand "Toyota" --options 1,2
+1558004593727:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,2
+1558004758930:stacktrace
+1558004969842:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,2
+1558004981030:stacktrace
+1558005004132:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,2
+1558005201117:stacktrace
+1558005953556:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,2
+1558006331741:get-order 55
+1558006347049:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,4,6
+1558006566677:add-order --customer "Soap Customer" --model "Camry" --brand "Toyota"
+1558011647083:update-order --id 1
+1558011661501:update-order --id 1 --customer "New"
+1558011795254:get-order 1
+1558011802836:update-order --id 1 --customer "Soap Customer"
+1558011827402:update-order --id 1 --customer "New"
+1558011907401:update-order --id 1 --customer "Soap Customer"
+1558011915553:update-order --id 1 --customer "New"
+1558011931399:get-ordewr 1
+1558011936374:get-order 1
+1558011995655:update-order 1
+1558012020601:update-order --id --customer "Soap Customer"
+1558012031872:update-order --id 1 --customer "Soap Customer"
+1558012050992:update-order --id --customer "Soap Customer"
+1558012067311:update-order --id 1 --options 2
+1558012075198:update-order --id 1 --options 2,3
+1558012081220:exit
+1558012277209:get-order 53
+1558012284356:get-order 55
+1558012286227:get-order 56
+1558012289500:get-order 57
+1558012302555:delete-order 56
+1558012318259:get-order 56
+1558012715530:get-order 54
+1558012718962:get-order 57
+1558012720641:get-order 53
+1558012725897:gelete-orer 53
+1558012733162:delte-order 53
+1558012740250:delete-order 53
+1558012751105:get-order 53
+1558013769613:get-order 1
+1558013773493:get-order 2
+1558013785804:delete-order 56
+1558015119542:get-ordewr 55
+1558015150637:get-order 56
+1558015361610:get-order 2
+1558015859966:get-all-orders
+1558016145566:get-all-orders-sc --sid 1 --scode "BEING_PROCESSED" --cid 1 --cname "New Customer"
+1558016195731:getAllByStatusAndCustomer
+1558016284249:stacktrace
+1558016356356:get-all-orders-sc --sid 1 --scode "BEING_PROCESSED" --cid 1 --cname "New Customer"
+1558016824047:stacktrace
+1558016965312:get-all-orders-sc --sid 1 --scode "BEING_PROCESSED" --cid 1 --cname "New Customer"
+1558017113900:get-all-orders-sc --sid 1 --cid 1 --cname "New Customer"
