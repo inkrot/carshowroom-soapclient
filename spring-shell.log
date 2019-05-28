@@ -109,3 +109,37 @@
 1558016824047:stacktrace
 1558016965312:get-all-orders-sc --sid 1 --scode "BEING_PROCESSED" --cid 1 --cname "New Customer"
 1558017113900:get-all-orders-sc --sid 1 --cid 1 --cname "New Customer"
+1559038837884:get-order 1
+1559038844343:server
+1559038887559:server http://34.66.177.63
+1559038892513:get-order 1
+1559038899911:stacktrace
+1559039116160:server http://34.66.177.63:80/soap
+1559039803420:get-order 1
+1559039812102:stacktrace
+1559039823395:server http://34.66.177.63:80/soap/
+1559039825910:get-orde 1
+1559039829302:get-order 1
+1559039838141:server http://34.66.177.63:80/
+1559039843817:get-order 1
+1559039850013:get-order 2
+1559039872432:add-order --customer "Soap Customer" --model "camry" --brand "Toyota" --options 1,2
+1559039906827:get-order 1
+1559039913582:stacktrace
+1559039922616:server
+1559040788568:get-order 1
+1559041386279:server http://34.66.177.63:80
+1559041390541:get-order 1
+1559041398208:get-order 2
+1559041479192:get-order 3
+1559041483802:get-order 1
+1559041488611:get-order 4
+1559041554179:get-all-orders
+1559041570027:server http://34.66.177.63:80
+1559041577810:get-all-orders
+1559041597448:get-all-orders-sc --sid 1 --cid 1 --cname "Клиент"
+1559041613282:get-all-orders-sc --sid 1 --cid 3 --cname "New"
+1559041619577:get-all-orders-sc --sid 1 --cname "New"
+1559041627884:get-all-orders-sc --sid 1 --cname "Клиент"
+1559041644107:get-all-orders-sc --sid 1 --cname "Клиент 1"
+1559041649165:get-all-orders-sc --sid 1 --cname "Клиент 2"

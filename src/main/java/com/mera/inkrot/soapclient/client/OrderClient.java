@@ -1,5 +1,6 @@
 package com.mera.inkrot.soapclient.client;
 
+import com.mera.inkrot.soapclient.command.ApplicationCommand;
 import com.mera.inkrot.soapclient.wsdl.order.*;
 import org.springframework.ws.client.core.support.WebServiceGatewaySupport;
 import javax.xml.bind.JAXBElement;
@@ -13,7 +14,7 @@ public class OrderClient extends WebServiceGatewaySupport {
     @SuppressWarnings("unchecked")
     public JAXBElement<?> getResponse(String methodName, Class declaredType, Object value) {
         return ((JAXBElement<GetByIdResponse>) getWebServiceTemplate()
-                .marshalSendAndReceive(getDefaultUri(), new JAXBElement<>(new QName(NAMESPACE_URI, methodName), declaredType, value)));
+                .marshalSendAndReceive(ApplicationCommand.serverUrl + "/soap/order", new JAXBElement<>(new QName(NAMESPACE_URI, methodName), declaredType, value)));
     }
 
     @SuppressWarnings("unchecked")
@@ -59,33 +60,3 @@ public class OrderClient extends WebServiceGatewaySupport {
         return ((JAXBElement<GetByIdResponse>) getResponse("getById", GetById.class, request)).getValue().getOrder();
     }
 }
-
-
-
-/*import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBElement;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.namespace.QName;
-import java.io.StringWriter;*/
-
-/*try {
-    GetById request = new GetById();
-    request.setId(id);
-    JAXBContext jaxbContext = JAXBContext.newInstance(GetById.class);
-    Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
-    jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-    QName qName = new QName("http://service.carshowroom.inkrot.mera.com/", "getById");
-    JAXBElement<GetById> root = new JAXBElement<>(qName, GetById.class, request);
-    StringWriter stringWriter = new StringWriter();
-    jaxbMarshaller.marshal(root, stringWriter);
-    System.out.println(stringWriter.toString());
-} catch (JAXBException e) {
-}*/
-
-/*
-GetById request = new GetById();
-request.setId(id);
-JAXBElement<GetByIdResponse> response = (JAXBElement<GetByIdResponse>) getWebServiceTemplate()
-        .marshalSendAndReceive("http://localhost:8080/soap/order", new JAXBElement<>(new QName("http://service.carshowroom.inkrot.mera.com/", "getById"), GetById.class, request));
-                //, new SoapActionCallback("http://impl.service.carshowroom.inkrot.mera.com/OrderService"));*/

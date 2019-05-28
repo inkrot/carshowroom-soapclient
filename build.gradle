@@ -27,7 +27,7 @@ version '1.0-SNAPSHOT'
 task genJaxb {
     ext.sourcesDir = "${buildDir}/generated-sources/jaxb"
     ext.classesDir = "${buildDir}/classes/jaxb"
-    ext.orderSchema = "http://localhost:8080/soap/order?wsdl=OrderService.wsdl"
+    ext.orderSchema = "http://34.66.177.63:80/soap/order?wsdl=OrderService.wsdl"
 
     outputs.dir classesDir
 
@@ -79,7 +79,8 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
-    compile 'org.springframework.shell:spring-shell-starter:2.0.1.BUILD-SNAPSHOT'
+    // https://mvnrepository.com/artifact/org.springframework.shell/spring-shell-starter
+    compile group: 'org.springframework.shell', name: 'spring-shell-starter', version: '2.0.1.RELEASE'
 
     compile("org.springframework.boot:spring-boot-starter")
 

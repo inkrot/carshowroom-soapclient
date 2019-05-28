@@ -15,6 +15,8 @@ public class ApplicationCommand {
 
     private OrderClient orderClient;
 
+    public static String serverUrl = "http://localhost:9000/soap/order";
+
     @Autowired
     public ApplicationCommand(OrderClient orderClient) {
         this.orderClient = orderClient;
@@ -83,7 +85,14 @@ public class ApplicationCommand {
         return options;
     }
 
-    // Example: add-order --customer "Soap Customer" --model "Camry" --brand "Toyota" --options 1,2
+    // Example: set-host http://localhost:9000
+    @ShellMethod(key = "server", value = "Set server url. Default: http://localhost:9000")
+    public String server(@ShellOption(defaultValue = "http://localhost:9000") String url) {
+        ApplicationCommand.serverUrl = url;
+        return "Server url [" + url + "] installed";
+    }
+
+    // Example: add-order --customer "Soap Customer" --model "camry" --brand "Toyota" --options 1,2
     @ShellMethod(key = "add-order", value = "Add order")
     public String addOrder(@ShellOption(value = "--customer") String customerName,
                            @ShellOption(value = "--model") String modelName,
@@ -121,7 +130,7 @@ public class ApplicationCommand {
         return toStringOrders(orderClient.getAllOrders());
     }
 
-    // Example: get-all-orders-sc --sid 1 --cid 1 --cname "New Customer"
+    // Example: get-all-orders-sc --sid 1 --cid 1 --cname "New"
     @ShellMethod(key = "get-all-orders-sc", value = "Get all orders by status and customer")
     public String getAllOrdersByStatusAndCustomer(@ShellOption(value = "--sid", defaultValue = "-1") Long statusId,
                                                   @ShellOption(value = "--scode", defaultValue = "") String statusCode,
