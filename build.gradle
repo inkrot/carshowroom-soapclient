@@ -21,7 +21,7 @@ configurations {
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
-group 'com.mera.inkrot.soapclient'
+group 'com.mera.inkrot.carshowroom'
 version '1.0-SNAPSHOT'
 
 task genJaxb {
